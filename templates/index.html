@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h3 {
+            text-align: center;
+            color: #666;
+        }
+        form {
+            margin-top: 30px;
+            text-align: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Segmentation Web Service By Yehoshua Kasaon</h1>
+
+    <h3>Please choose one or more images for segmentation</h3>
+
+    <form action="http://localhost:5000/uploader" method="POST" enctype="multipart/form-data">
+        <label for="myfile" id="file-label">Select</label>
+        <input type="file" id="myfile" name="file" onchange="updateLabel(this)" multiple>
+        <br><br>
+        <input type="submit" value="Segment">
+    </form>
+
+    <script>
+        function updateLabel(input) {
+            var label = document.getElementById("file-label");
+            var fileName = "";
+            if (input.files && input.files.length > 1) {
+                fileName = input.files.length + " files selected";
+            } else {
+                fileName = input.files[0].name;
+            }
+            label.innerHTML = fileName;
+        }
+    </script>
+</body>
+</html>
